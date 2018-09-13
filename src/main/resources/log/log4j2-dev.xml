@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding= "UTF-8"?>
+<Configuration status="off" monitorInterval="1800">
+
+    <Properties>
+        <property name="projectName">practicalWeapon</property>
+
+        <property name="logPattern">%x [%d{yyyy-MM-dd HH:mm:ss.SSS}] [%t] %-5level %logger{36}-%msg%n</property>
+        <property name="logPath">/app/logs/</property>
+        <property name="fileName">${logPath}/info.log</property>
+        <property name="errorFileName">${logPath}/error.log</property>
+        <property name="warnFileName">${logPath}/warn.log</property>
+        <property name="opTokenFileName">${logPath}/start_success.txt</property>
+
+        <property name="rollingFilePattern">${logPath}/info-%d{yyyy-MM-dd}.log</property>
+        <property name="errorRollingFilePattern">${logPath}/error-%d{yyyy-MM-dd}.log
+        </property>
+        <property name="warnRollingFilePattern">${logPath}/warn-%d{yyyy-MM-dd}.log
+        </property>
+    </Properties>
+
+    <Appenders>
+
+        <Console name="Console" target="SYSTEM_OUT" ignoreExceptions="false">
+            <PatternLayout pattern="${logPattern}"/>
+        </Console>
+
+        <!-- 所有日志 -->
+        <RollingRandomAccessFile name="RollingFile" fileName="${fileName}"
+                                 filePattern="${rollingFilePattern}">
+            <PatternLayout pattern="${logPattern}"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+        </RollingRandomAccessFile>
+
+        <!-- warn 日志 -->
+        <RollingRandomAccessFile name="WarnRollingFile" fileName="${warnFileName}"
+                                 filePattern="${warnRollingFilePattern}">
+            <PatternLayout
+                    pattern="${logPattern}"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+            <Filters>
+                <ThresholdFilter level="ERROR" onMatch="DENY" onMismatch="NEUTRAL"/>
+                <ThresholdFilter level="WARN" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+        </RollingRandomAccessFile>
+
+        <!-- error日志 -->
+        <RollingRandomAccessFile name="ErrorRollingFile" fileName="${errorFileName}"
+                                 filePattern="${errorRollingFilePattern}">
+            <PatternLayout pattern="${logPattern}"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+            <Filters>
+                <ThresholdFilter level="error" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+        </RollingRandomAccessFile>
+
+        <Console name="Console" target="SYSTEM_OUT" ignoreExceptions="false">
+            <PatternLayout pattern="${logPattern}"/>
+        </Console>
+    </Appenders>
+
+    <Loggers>
+        <logger name="com.vin" level="debug"/>
+        <Root level="info">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="RollingFile"/>
+            <AppenderRef ref="WarnRollingFile"/>
+            <AppenderRef ref="ErrorRollingFile"/>
+        </Root>
+    </Loggers>
+</Configuration>

@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zxc.mapper.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.zxc.model.User" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="pass_org" property="passOrg" jdbcType="VARCHAR" />
+    <result column="pass" property="pass" jdbcType="VARCHAR" />
+    <result column="real_name" property="realName" jdbcType="VARCHAR" />
+    <result column="nick" property="nick" jdbcType="VARCHAR" />
+    <result column="gender" property="gender" jdbcType="INTEGER" />
+    <result column="age" property="age" jdbcType="INTEGER" />
+    <result column="head_pic" property="headPic" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="c_time" property="cTime" jdbcType="TIMESTAMP" />
+    <result column="u_time" property="uTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, phone, pass_org, pass, real_name, nick, gender, age, head_pic, status, c_time, 
+    u_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from wy_user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from wy_user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zxc.model.User" >
+    insert into wy_user (id, phone, pass_org, 
+      pass, real_name, nick, 
+      gender, age, head_pic, 
+      status, c_time, u_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{phone,jdbcType=VARCHAR}, #{passOrg,jdbcType=VARCHAR}, 
+      #{pass,jdbcType=VARCHAR}, #{realName,jdbcType=VARCHAR}, #{nick,jdbcType=VARCHAR}, 
+      #{gender,jdbcType=INTEGER}, #{age,jdbcType=INTEGER}, #{headPic,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{cTime,jdbcType=TIMESTAMP}, #{uTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zxc.model.User" >
+    insert into wy_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="passOrg != null" >
+        pass_org,
+      </if>
+      <if test="pass != null" >
+        pass,
+      </if>
+      <if test="realName != null" >
+        real_name,
+      </if>
+      <if test="nick != null" >
+        nick,
+      </if>
+      <if test="gender != null" >
+        gender,
+      </if>
+      <if test="age != null" >
+        age,
+      </if>
+      <if test="headPic != null" >
+        head_pic,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="cTime != null" >
+        c_time,
+      </if>
+      <if test="uTime != null" >
+        u_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="passOrg != null" >
+        #{passOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="pass != null" >
+        #{pass,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null" >
+        #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="nick != null" >
+        #{nick,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        #{gender,jdbcType=INTEGER},
+      </if>
+      <if test="age != null" >
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="headPic != null" >
+        #{headPic,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="cTime != null" >
+        #{cTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uTime != null" >
+        #{uTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zxc.model.User" >
+    update wy_user
+    <set >
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="passOrg != null" >
+        pass_org = #{passOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="pass != null" >
+        pass = #{pass,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null" >
+        real_name = #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="nick != null" >
+        nick = #{nick,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        gender = #{gender,jdbcType=INTEGER},
+      </if>
+      <if test="age != null" >
+        age = #{age,jdbcType=INTEGER},
+      </if>
+      <if test="headPic != null" >
+        head_pic = #{headPic,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="cTime != null" >
+        c_time = #{cTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uTime != null" >
+        u_time = #{uTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zxc.model.User" >
+    update wy_user
+    set phone = #{phone,jdbcType=VARCHAR},
+      pass_org = #{passOrg,jdbcType=VARCHAR},
+      pass = #{pass,jdbcType=VARCHAR},
+      real_name = #{realName,jdbcType=VARCHAR},
+      nick = #{nick,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=INTEGER},
+      age = #{age,jdbcType=INTEGER},
+      head_pic = #{headPic,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      c_time = #{cTime,jdbcType=TIMESTAMP},
+      u_time = #{uTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

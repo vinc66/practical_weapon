@@ -1,0 +1,26 @@
+server:
+  port: 8090
+
+endpoints:
+  actuator:
+    enabled: true
+
+management:
+  security:
+    enabled: false
+
+spring:
+  profiles:
+      active: dev
+  application:
+      name: practicalWeapon
+  data:
+    redis:
+      repositories:
+        enabled: false
+  aop:
+    proxy-target-class: true
+
+task:
+  notify:
+    check: '0 0/20 * * * ?'

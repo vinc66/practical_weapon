@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding= "UTF-8"?>
+<Configuration status="off" monitorInterval="1800">
+
+    <Properties>
+        <property name="projectName">practicalWeapon</property>
+
+        <property name="logPattern">[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%t] %-5level %logger{36}-%msg%n</property>
+        <property name="logPath">/app/logs/</property>
+        <property name="fileName">${logPath}/info.log</property>
+        <property name="errorFileName">${logPath}/error.log</property>
+        <property name="warnFileName">${logPath}/warn.log</property>
+        <property name="opTokenFileName">${logPath}/start_success.txt</property>
+
+        <property name="rollingFilePattern">${logPath}/info-%d{yyyy-MM-dd}.log</property>
+        <property name="errorRollingFilePattern">${logPath}/error-%d{yyyy-MM-dd}.log
+        </property>
+        <property name="warnRollingFilePattern">${logPath}/warn-%d{yyyy-MM-dd}.log
+        </property>
+    </Properties>
+
+</Configuration>
+
