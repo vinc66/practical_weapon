@@ -1,5 +1,4 @@
 # practical_weapon
-## 服务后台随便写
 ### springboot
 ### druid
 ### redis读写分离
